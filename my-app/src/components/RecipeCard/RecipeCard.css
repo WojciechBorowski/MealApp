@@ -1,0 +1,96 @@
+.recipe-card {
+    display: flex;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card .recipe-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
+}
+
+.recipe-card-body {
+    flex: 1;
+    padding: 20px;
+}
+
+.recipe-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.recipe-category {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.recipe-ingredients-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.recipe-ingredients-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.recipe-ingredients-list li {
+    margin-bottom: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.text-center {
+    text-align: center;
+}
