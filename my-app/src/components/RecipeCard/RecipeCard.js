@@ -22,7 +22,7 @@ const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorit
             addToFavorites(recipe);
         }
     };
-
+    
     const handleRemoveFromFavorites = () => {
         if (removeFromFavorites) {
             removeFromFavorites(idMeal);
@@ -30,6 +30,13 @@ const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorit
     };
 
     const isFavorite = favoriteRecipes.some(fav => fav.idMeal === idMeal);
+
+    const handleKeyDown = (event, action) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            action();
+        }
+    };
 
     return (
         <div className="recipe-card">
@@ -40,7 +47,7 @@ const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorit
                 <p className="recipe-ingredients-title">Składniki:</p>
                 <ul className="recipe-ingredients-list">
                     {ingredients.map((ingredient, index) => (
-                        <li key={index}>{ingredient}</li>
+                        <li key={`${ingredient}-${index}`}>{ingredient}</li>
                     ))}
                 </ul>
                 {strSource ? (
@@ -52,7 +59,10 @@ const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorit
                 )}
                 <button 
                     onClick={isFavorite ? handleRemoveFromFavorites : handleAddToFavorites}
+                    onKeyDown={(event) => handleKeyDown(event, isFavorite ? handleRemoveFromFavorites : handleAddToFavorites)}
                     className={`btn btn-sm ${isFavorite ? 'btn-danger' : 'btn-warning'}`}
+                    aria-label={isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
+                    tabIndex={0}
                 >
                     {isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
                 </button>
