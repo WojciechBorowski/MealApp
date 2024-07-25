@@ -2,6 +2,8 @@ import React from 'react';
 import './RecipeCard.css';
 
 const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorites }) => {
+
+    // pomyśleć o alternatywie dotyczącej składników - napewno jest lepszy sposób
     const {
         idMeal,
         strMeal,
@@ -22,7 +24,7 @@ const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorit
             addToFavorites(recipe);
         }
     };
-    
+
     const handleRemoveFromFavorites = () => {
         if (removeFromFavorites) {
             removeFromFavorites(idMeal);
@@ -37,7 +39,7 @@ const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorit
             action();
         }
     };
-
+    // dodać funkcje, odpowiedzialne za składniki, 
     return (
         <div className="recipe-card">
             <img src={strMealThumb} alt={strMeal} className="img-fluid recipe-image" />
@@ -50,22 +52,26 @@ const RecipeCard = ({ recipe, favoriteRecipes, addToFavorites, removeFromFavorit
                         <li key={`${ingredient}-${index}`}>{ingredient}</li>
                     ))}
                 </ul>
-                {strSource ? (
-                    <a href={strSource} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
-                        Pełny przepis
-                    </a>
-                ) : (
-                    <p className="text-danger">Link do przepisu jest niedostępny</p>
-                )}
-                <button 
-                    onClick={isFavorite ? handleRemoveFromFavorites : handleAddToFavorites}
-                    onKeyDown={(event) => handleKeyDown(event, isFavorite ? handleRemoveFromFavorites : handleAddToFavorites)}
-                    className={`btn btn-sm ${isFavorite ? 'btn-danger' : 'btn-warning'}`}
-                    aria-label={isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
-                    tabIndex={0}
-                >
-                    {isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
-                </button>
+                <div className="btn-container">
+                    {strSource ? (
+                        <a href={strSource} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
+                            Pełny przepis
+                        </a>
+                    ) : (
+                        <div className="btn text-danger">
+                            Link nie jest dostępny
+                        </div>
+                    )}
+                    <button
+                        onClick={isFavorite ? handleRemoveFromFavorites : handleAddToFavorites}
+                        onKeyDown={(event) => handleKeyDown(event, isFavorite ? handleRemoveFromFavorites : handleAddToFavorites)}
+                        className={`btn btn-sm ${isFavorite ? 'btn-danger' : 'btn-warning'}`}
+                        aria-label={isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
+                        tabIndex={0}
+                    >
+                        {isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
+                    </button>
+                </div>
             </div>
         </div>
     );
