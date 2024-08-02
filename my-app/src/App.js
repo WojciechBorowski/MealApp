@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+<<<<<<< HEAD
 
 import RecipeList from './components/RecipeList/RecipeList';
 import Navbar from './components/navbar/Navbar';
@@ -30,15 +31,30 @@ function App() {
         setRecipes(randomRecipes);
         setCategories(categories);  
     };
+=======
+import useRecipesManager from './hooks/useRecipesManager';
+import RecipeList from './components/RecipeList/RecipeList';
+import Navbar from './components/Navbar/Navbar/Navbar';
+import Loader from './components/Loader/Loader';
+import './App.css';
+
+function App() {
+    const { recipes, favoriteRecipes, categories, searchRecipes, getRecipesByCategory, addToFavorites, removeFromFavorites } = useRecipesManager();
+>>>>>>> bf92175cf8f1e45b0fe5b1c05af0cb727c4f47f6
 
     return (
         <Router>
             <div className="App">
                 <Navbar categories={categories} onCategorySelect={handleGetRecipesByCategory} onSearch={handleSearchRecipes} onMealAppClick={handleMealAppClick} />
                 <div className="container">
+<<<<<<< HEAD
                     {loading && <Loader />}
                     {!loading && !error && !categories.length && <div className="alert alert-info"></div>}
                     {error && !loading && !categories.length && <div className="alert alert-danger">{error}</div>}
+=======
+                    {/* Jeśli używasz komponentu Loader, musisz zarządzać jego stanem w inny sposób */}
+                    {/* Przykład usunięcia odniesień do status */}
+>>>>>>> bf92175cf8f1e45b0fe5b1c05af0cb727c4f47f6
                     <Routes>
                         <Route
                             path="/"
