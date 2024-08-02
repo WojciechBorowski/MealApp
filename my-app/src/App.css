@@ -16,40 +16,16 @@ body {
   padding: 20px;
 }
 
-.navbar {
-  background-color: #343a40;
-  padding: 10px 20px;
-  color: #fff;
+.text-danger {
+  color: #dc3545;
 }
 
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  padding: 10px;
-  display: inline-block;
-}
-
-.navbar a:hover {
-  background-color: #495057;
-}
-
-.recipe-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px;
+.text-center {
+  text-align: center;
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 10px;
-  }
-
-  .navbar {
-    padding: 10px;
-  }
-
-  .navbar a {
-    padding: 8px;
   }
 }

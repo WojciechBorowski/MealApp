@@ -1,46 +1,31 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { handleSearchSubmit, handleCategoryClick } from '../../utils/navbarUtils';
+
 import './Navbar.css';
 
-const Navbar = ({ categories, onCategorySelect, onSearch, onMyRecipesClick }) => {
+const Navbar = ({ categories, onCategorySelect, onSearch, onMealAppClick }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
 
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
+    const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-    const handleSearchSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        if (searchTerm.trim() !== '') {
-            navigate(`/?search=${encodeURIComponent(searchTerm)}`);
-            onSearch(searchTerm.trim()); 
-        } else {
-            navigate('/');
-        }
-        setSearchTerm(''); 
+        handleSearchSubmit(searchTerm, navigate, onSearch);
     };
 
-    const handleMyRecipesClick = () => {
-        navigate('/');
-        onMyRecipesClick(); 
-    };
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
-
-    const handleCategoryClick = (category) => {
-        navigate(`/${category}`); 
-        onCategorySelect(category);
-        setIsDropdownOpen(false); 
+    const handleCategoryClickWrapper = (category) => {
+        handleCategoryClick(category, navigate, onCategorySelect);
+        setIsDropdownOpen(false);
     };
 
     return (
         <nav className="navbar">
-            <Link to="/" className="navbar-brand" onClick={handleMyRecipesClick}>Meal App</Link>
-            <form className="search-container" onSubmit={handleSearchSubmit}>
+            <Link to="/" className="navbar-brand" onClick={onMealAppClick}>Meal App</Link>
+            <form className="search-container" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Wyszukaj danie lub składnik..."
@@ -59,7 +44,7 @@ const Navbar = ({ categories, onCategorySelect, onSearch, onMyRecipesClick }) =>
                 <li className="nav-item navbar-dropdown">
                     <button 
                         className="nav-link dropdown-toggle" 
-                        onClick={toggleDropdown}
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         aria-expanded={isDropdownOpen}
                     >
                         Kategorie
@@ -70,10 +55,10 @@ const Navbar = ({ categories, onCategorySelect, onSearch, onMyRecipesClick }) =>
                                 <button
                                     key={category}
                                     className="dropdown-item"
-                                    onClick={() => handleCategoryClick(category)}
+                                    onClick={() => handleCategoryClickWrapper(category)}
                                     onKeyDown={(e) => {
                                         if (e.key === 'Enter') {
-                                            handleCategoryClick(category);
+                                            handleCategoryClickWrapper(category);
                                         }
                                     }}
                                     tabIndex={0}

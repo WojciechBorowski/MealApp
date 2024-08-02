@@ -1,6 +1,8 @@
 import React from 'react';
-import './RecipeList.css';
+
 import RecipeCard from '../RecipeCard/RecipeCard';
+
+import './RecipeList.css';
 
 const RecipeList = ({ recipes, favoriteRecipes, onAddToFavorites, onRemoveFromFavorites }) => {
     return (
@@ -14,7 +16,7 @@ const RecipeList = ({ recipes, favoriteRecipes, onAddToFavorites, onRemoveFromFa
                         recipe={recipe}
                         favoriteRecipes={favoriteRecipes}
                         addToFavorites={onAddToFavorites}
-                        removeFromFavorites={onRemoveFromFavorites} 
+                        removeFromFavorites={onRemoveFromFavorites}
                     />
                 ))
             )}
